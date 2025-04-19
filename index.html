@@ -2,72 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Styled Table</title>
+  <title>Functional Calculator</title>
   <style>
     body {
+      background-color: #f4f4f4;
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    table {
-      width: 80%;
-      margin: auto;
-      border-collapse: collapse;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
+    .calculator {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
     }
 
-    th, td {
-      padding: 12px 20px;
-      border: 1px solid #ddd;
-      text-align: center;
+    .display {
+      background-color: #000;
+      color: #0f0;
+      font-size: 2em;
+      padding: 10px;
+      text-align: right;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      min-height: 40px;
     }
 
-    th {
-      background-color: #2336de;
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+    }
+
+    .buttons button {
+      padding: 15px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      background-color: #444;
       color: white;
+      cursor: pointer;
+      transition: background 0.2s;
     }
 
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
+    .buttons button:hover {
+      background-color: #666;
     }
 
-    tr:hover {
-      background-color: #f1f1f1;
+    .buttons .operator {
+      background-color: #ff9800;
+    }
+
+    .buttons .operator:hover {
+      background-color: #e68900;
+    }
+
+    .buttons .equals {
+      background-color: #4CAF50;
+      grid-column: span 2;
+    }
+
+    .buttons .equals:hover {
+      background-color: #45a049;
+    }
+
+    .buttons .clear {
+      background-color: #f44336;
+      grid-column: span 2;
+    }
+
+    .buttons .clear:hover {
+      background-color: #da190b;
     }
   </style>
 </head>
 <body>
 
-  <h2 style="text-align: center;">Student Marks Table</h2>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="operator" onclick="append('/')">/</button>
+      <button class="operator" onclick="append('*')">*</button>
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="operator" onclick="append('-')">-</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="operator" onclick="append('+')">+</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="equals" onclick="calculate()">=</button>
+    </div>
+  </div>
 
-  <table>
-    <tr>
-      <th>Roll No</th>
-      <th>Name</th>
-      <th>Subject</th>
-      <th>Marks</th>
-    </tr>
-    <tr>
-      <td>101</td>
-      <td>Neha</td>
-      <td>Math</td>
-      <td>95</td>
-    </tr>
-    <tr>
-      <td>102</td>
-      <td>Ayush</td>
-      <td>Science</td>
-      <td>88</td>
-    </tr>
-    <tr>
-      <td>103</td>
-      <td>Shreya</td>
-      <td>English</td>
-      <td>92</td>
-    </tr>
-  </table>
+  <script>
+    let display = document.getElementById('display');
+    let expression = '';
+
+    function append(value) {
+      if (display.innerText === '0' || display.innerText === 'Error') {
+        expression = value;
+      } else {
+        expression += value;
+      }
+      display.innerText = expression;
+    }
+
+    function clearDisplay() {
+      expression = '';
+      display.innerText = '0';
+    }
+
+    function calculate() {
+      try {
+        expression = eval(expression).toString();
+        display.innerText = expression;
+      } catch (error) {
+        display.innerText = 'Error';
+        expression = '';
+      }
+    }
+  </script>
 
 </body>
 </html>
