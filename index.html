@@ -2,136 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Functional Calculator</title>
+  <title>To-Do List</title>
   <style>
     body {
       background-color: #f4f4f4;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
+      align-items: flex-start;
+      padding-top: 80px;
     }
 
-    .calculator {
-      background-color: #222;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+    .todo-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      width: 400px;
     }
 
-    .display {
-      background-color: #000;
-      color: #0f0;
-      font-size: 2em;
-      padding: 10px;
-      text-align: right;
-      border-radius: 5px;
+    .todo-container h2 {
+      text-align: center;
       margin-bottom: 20px;
-      min-height: 40px;
+      color: #333;
     }
 
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 60px);
+    .input-group {
+      display: flex;
       gap: 10px;
+      margin-bottom: 20px;
     }
 
-    .buttons button {
-      padding: 15px;
-      font-size: 1.2em;
+    .input-group input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    .input-group button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
       border: none;
       border-radius: 8px;
-      background-color: #444;
-      color: rgb(118, 5, 5);
       cursor: pointer;
-      transition: background 0.2s;
+      font-size: 1em;
     }
 
-    .buttons button:hover {
-      background-color: #666;
-    }
-
-    .buttons .operator {
-      background-color: #ff9800;
-    }
-
-    .buttons .operator:hover {
-      background-color: #e68900;
-    }
-
-    .buttons .equals {
-      background-color: #4CAF50;
-      grid-column: span 2;
-    }
-
-    .buttons .equals:hover {
+    .input-group button:hover {
       background-color: #45a049;
     }
 
-    .buttons .clear {
-      background-color: #f44336;
-      grid-column: span 2;
+    ul.todo-list {
+      list-style: none;
+      padding: 0;
     }
 
-    .buttons .clear:hover {
-      background-color: #da190b;
+    ul.todo-list li {
+      padding: 10px 15px;
+      background-color: #f9f9f9;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ddd;
+    }
+
+    ul.todo-list li span {
+      flex: 1;
+    }
+
+    ul.todo-list li button {
+      background-color: #f44336;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    ul.todo-list li button:hover {
+      background-color: #d32f2f;
     }
   </style>
 </head>
 <body>
 
-  <div class="calculator">
-    <div class="display" id="display">0</div>
-    <div class="buttons">
-      <button class="clear" onclick="clearDisplay()">C</button>
-      <button class="operator" onclick="append('/')">/</button>
-      <button class="operator" onclick="append('*')">*</button>
-      <button onclick="append('7')">7</button>
-      <button onclick="append('8')">8</button>
-      <button onclick="append('9')">9</button>
-      <button class="operator" onclick="append('-')">-</button>
-      <button onclick="append('4')">4</button>
-      <button onclick="append('5')">5</button>
-      <button onclick="append('6')">6</button>
-      <button class="operator" onclick="append('+')">+</button>
-      <button onclick="append('1')">1</button>
-      <button onclick="append('2')">2</button>
-      <button onclick="append('3')">3</button>
-      <button onclick="append('0')">0</button>
-      <button onclick="append('.')">.</button>
-      <button class="equals" onclick="calculate()">=</button>
+  <div class="todo-container">
+    <h2>My To-Do List</h2>
+    <div class="input-group">
+      <input type="text" placeholder="Add new task..." disabled>
+      <button disabled>Add</button>
     </div>
+    <ul class="todo-list">
+      <li><span>Learn HTML</span> <button>Delete</button></li>
+      <li><span>Practice CSS</span> <button>Delete</button></li>
+      <li><span>Build To-Do App</span> <button>Delete</button></li>
+    </ul>
   </div>
-
-  <script>
-    let display = document.getElementById('display');
-    let expression = '';
-
-    function append(value) {
-      if (display.innerText === '0' || display.innerText === 'Error') {
-        expression = value;
-      } else {
-        expression += value;
-      }
-      display.innerText = expression;
-    }
-
-    function clearDisplay() {
-      expression = '';
-      display.innerText = '0';
-    }
-
-    function calculate() {
-      try {
-        expression = eval(expression).toString();
-        display.innerText = expression;
-      } catch (error) {
-        display.innerText = 'Error';
-        expression = '';
-      }
-    }
-  </script>
 
 </body>
 </html>
