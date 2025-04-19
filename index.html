@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Styled Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 40px;
+    }
+
+    table {
+      width: 80%;
+      margin: auto;
+      border-collapse: collapse;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    th, td {
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align: center;">Student Marks Table</h2>
+
+  <table>
+    <tr>
+      <th>Roll No</th>
+      <th>Name</th>
+      <th>Subject</th>
+      <th>Marks</th>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>Neha</td>
+      <td>Math</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>Ayush</td>
+      <td>Science</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>Shreya</td>
+      <td>English</td>
+      <td>92</td>
+    </tr>
+  </table>
+
+</body>
+</html>
